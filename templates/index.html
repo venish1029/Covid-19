@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!--Let browser know website is optimized for mobile-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo"><i class="material-icons">local_hospital</i>Covid-19</a>
+            
+        </div>
+    </nav>
+
+    <div class="row" style="margin-left: 30%;margin-top: 2%;">
+        <div class="col s12 m7">
+            <div class="card"">
+            <div class=" card-image" style="width: 300px;height: 300px; margin-left: 23%;">
+                <img src="https://pbs.twimg.com/media/ETO9_ZHWkAEH-bK.jpg" style="margin-top: 10px;">
+                <span class="card-title" style="margin-left: 25%;"><b>World wide</b></span>
+            </div>
+            <div class="card-content">
+                <table>
+                    <tr>
+                        <td>
+                            <p style="text-align: left;">Total Confirm Cases
+                        </td>
+                        <td>
+                            <p style="text-align: right;"> {{ global_data.Confirmed }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="text-align: left;">Total Active Cases
+                        </td>
+                        <td>
+                            <p style="text-align: right;">{{ global_data.Active }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="text-align: left;">Total NewConfirmed Cases
+                        </td>
+                        <td>
+                            <p style="text-align: right;">{{ global_data.NewConfirmed }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="text-align: left;">Total NewRecovered Cases
+                        </td>
+                        <td>
+                            <p style="text-align: right;">{{ global_data.NewRecovered }} </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="text-align: left;">Total NewDeaths Cases
+                        </td>
+                        <td>
+                            <p style="text-align: right;">{{ global_data.NewDeaths }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="text-align: left;">Total Recovered Cases
+                        </td>
+                        <td>
+                            <p style="text-align: right;">{{ global_data.Recovered }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="text-align: left;">Total Deaths
+                        </td>
+                        <td>
+                            <p style="text-align: right;">{{ global_data.Deaths }}</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <label>
+            <h6>Confirm Cases</h6>
+        </label>
+        <marquee>{{ string_confirm }}</marquee>
+        <label>
+            <h6>Death Cases</h6>
+        </label>
+        <marquee>{{ string_death }}</marquee>
+    </div>
+    </div>
+    <ul class="collapsible">
+        <li>
+            <div class="collapsible-header">
+                <i class="material-icons">place</i>
+                State Wise
+                <span class="badge">
+                    <p>click here for more Details {{ list_len }}</p>
+                </span></div>
+            <div class="collapsible-body">
+
+                <div class="row">
+                    {% for i in list_country%}
+                    <div class="col s4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="media/{{i.1}}.png" style="width: 400px;height: 300px;">
+                                <span class="card-title">{{ i.0 }}</span>
+                            </div>
+                            <div class="card-content">
+                                <p>{{ i.0 }}</p>
+                                <table>
+                                    <tr>
+                                        <td>Total Confirmed Cases</td>
+                                        <td>{{ i.2 }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Deaths Cases</td>
+                                        <td>{{ i.3 }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Active Cases</td>
+                                        <td>{{ i.4 }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="card-action">
+                                <a href="/state/{{ i.0 }}/">This is a link</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </li>
+    </ul>
+
+
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+
+</html>
